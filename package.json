@@ -1,4 +1,5 @@
 {
+  "homepage": "https://PrabhatKumardhiman.github.io/ImageX",
   "name": "image-x",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "blurhash": "^2.0.5",
     "bootstrap": "^5.3.1",
+    "gh-pages": "^6.0.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -23,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
