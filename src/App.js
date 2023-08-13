@@ -14,8 +14,8 @@ function App() {
   const setProgress= (progress)=>{
     setState({progress : progress})
   };
-
-  return (
+ 
+  return (<>
     <Router>
       <Navbar setCategory = {setCategory} />
       <LoadingBar
@@ -34,6 +34,7 @@ function App() {
         <Route exact path="/technology" element={<Body setProgress = {setProgress} key="technology" category={"technology"} />}> </Route>
       </Routes>
     </Router>
+    </>
   );
 };
 export default App;

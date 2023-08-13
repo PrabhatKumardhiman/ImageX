@@ -32,9 +32,9 @@ export default class Body1 extends Component {
             totalImages: 1,
             modal: false,
             category : this.props.category,
-
+            message: true
         }
-
+        
         document.title = `ImageX - ${this.capatelizeFirstLetter(this.props.category)}`
     }
 
@@ -114,8 +114,9 @@ export default class Body1 extends Component {
                 }} onClick = {() => this.setState({modal:false, currentImgUrl: ""})} />
                 <img effect="blur" src={this.state.currentImgUrl} alt="" />
             </div>
-
+                
             <div className="container">
+            {this.state.message && <p style={{color : "red", textAlign: "center", marginTop: "10px", fontSize : "25px"}}>This Application Uses React Router Please Click Home to Continue</p>}
                 <InfiniteScroll style={{ overflow: "hidden" }}
                     dataLength={this.state.article.length} //This is important field to render the next data
                     next={this.fetchMoreData}
@@ -129,7 +130,7 @@ export default class Body1 extends Component {
                 >
                     <div className="container gallery mt-3" >
                         {this.state.article.map((elem) => {
-                            return <div onClick={() => this.handleImgClick(elem)} className="">
+                            return <div onClick={() => this.handleImgClick(elem)} onLoad={this.setState({message: false})} className="">
                                 <Image key={elem.id} imgUrl={elem.urls.small} />
                             </div>
                         })}
