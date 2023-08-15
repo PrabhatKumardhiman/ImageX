@@ -6,7 +6,7 @@ const Image = (props) => {
     return (
         <div>
             <div className="card mb-3" style= {{border: "none"}}>
-                <LazyLoadImage effect = "blur" src={imgUrl} className=" shadow bg-body-tertiary rounded" alt="..." style = {{width : "100%"}}  />
+                <LazyLoadImage  effect = "blur" src={imgUrl} className=" shadow bg-body-tertiary rounded" alt="..." style = {{width : "100%"}}  />
             </div>
         </div>
     )

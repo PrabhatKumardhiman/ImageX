@@ -15,22 +15,19 @@
     filter: opacity(0.8)
 }
 
-
-@media (max-width: 991px){
-    .container .gallery{
-        columns: 2;
-
-    }  
+.searchContainer{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-@media (max-width: 580px){
-    .container .gallery{
-        display: flex;
-        flex-wrap: wrap;
-        margin: auto;
-        justify-content: center
-    }  
+.search{
+    position: absolute;
 }
+
+
 
 /* modal */
 
@@ -61,11 +58,27 @@
 .myModal img{
     width: auto;
     max-width: 100%;
-    height: 100vh;
     max-height: 100%;
     display: block;
     line-height: 0;
     box-sizing: border-box;
     padding: 20px 0 20px;
     margin: 0 auto
+}
+
+
+@media (max-width: 991px){
+    .container .gallery{
+        columns: 2;
+
+    }  
+}
+
+@media (max-width: 580px){
+    .container .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center
+    }  
 }
