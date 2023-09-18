@@ -1,12 +1,13 @@
-import React  from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const [value , setValue ] = useState("")
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">ImageX</Link>
+                    <a className="navbar-brand" href="/">ImageX</a>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -21,28 +22,63 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" aria-current="page" to="/">
-                                    Home</Link>
+                                <button className="nav-link" aria-current="page" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "general" })
+                                }}>
+                                    Home</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/business">Business</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Business" })
+                                }} >Business</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/entertainment">Entertainment</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Entertainment" })
+                                }} >Entertainment</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/health">Health</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Health" })
+                                }} >Health</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/science">Science</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Science" })
+                                }} >Science</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/sports">Sports</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Sports" })
+                                }} >Sports</button>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/technology">Technology</Link>
+                                <button className="nav-link" onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setState({ category: "Technology" })
+                                }} >Technology</button>
                             </li>
                         </ul>
+                        <form className="d-flex" role="search" onSubmit={(e) => {
+                            e.preventDefault()
+                            props.setState({ category: value })
+                        }}>
+                            <input
+                                className="form-control me-2"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                            />
+                            <button className="btn btn-outline-success" type="submit" >Search</button>
+                        </form>
                     </div>
                 </div>
             </nav>

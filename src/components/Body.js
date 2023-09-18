@@ -11,7 +11,7 @@ export default class Body1 extends Component {
     static defaultProps = {
         category: 'general'
     }
-
+    
     static propTypes = {
         category: PropTypes.string,
     }
@@ -46,7 +46,7 @@ export default class Body1 extends Component {
         this.setState({
             loading: true
         })
-        let url = `https://api.unsplash.com/search/photos/?client_id=lF2uW3wfDt5MxaYkJPwLQVwM08hTyFYhjf5JjF0-Qpg&per_page=30&query=${this.state.category}&page=${this.state.page}`
+        let url = `https://api.unsplash.com/search/photos/?client_id=lF2uW3wfDt5MxaYkJPwLQVwM08hTyFYhjf5JjF0-Qpg&per_page=30&query=${this.props.category}&page=${this.state.page}`
         let data = await fetch(url)
         this.props.setProgress(50)
         let fetchedData = await data.json()
@@ -55,12 +55,19 @@ export default class Body1 extends Component {
         this.props.setProgress(100)
     }
 
+    async componentDidUpdate() {
+        let url = `https://api.unsplash.com/search/photos/?client_id=lF2uW3wfDt5MxaYkJPwLQVwM08hTyFYhjf5JjF0-Qpg&per_page=30&query=${this.props.category}&page=${this.state.page}`
+        let data = await fetch(url)      
+        let fetchedData = await data.json()
+        this.setState({ article: fetchedData.results, totalImages: fetchedData.total, totalPage: fetchedData.total_pages, loading: false })
+    }
+
     fetchMoreData = async () => {
         this.setState({
             loading: true
         })
         this.setState({ page: this.state.page + 1 })
-        let url = `https://api.unsplash.com/search/photos/?client_id=lF2uW3wfDt5MxaYkJPwLQVwM08hTyFYhjf5JjF0-Qpg&per_page=30&query=${this.state.category}&page=${this.state.page + 1}`
+        let url = `https://api.unsplash.com/search/photos/?client_id=lF2uW3wfDt5MxaYkJPwLQVwM08hTyFYhjf5JjF0-Qpg&per_page=30&query=${this.props.category}&page=${this.state.page + 1}`
         let data = await fetch(url)
         let fetchedData = await data.json()
         this.setState({ article: this.state.article.concat(fetchedData.results), loading: false })
@@ -76,6 +83,7 @@ export default class Body1 extends Component {
     }
 
     render() {
+        
         return (<>
             <div className={this.state.modal === true ? "myModal open" : "myModal"}>
                 <UilMultiply style={{
